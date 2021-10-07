@@ -64,7 +64,7 @@ mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY
 
 
 # Nginx Configuration
-sudo mkdir -p "/var/www/$NGINX_DOCUMENT_ROOT/public"
+sudo mkdir -p "/var/www/$NGINX_DOCUMENT_ROOT"
 sudo chown -R $USER:www-data /var/www/$NGINX_DOCUMENT_ROOT
 sudo find /var/www/$NGINX_DOCUMENT_ROOT -type f -exec chmod 664 {} \;    
 sudo find /var/www/$NGINX_DOCUMENT_ROOT -type d -exec chmod 775 {} \;
