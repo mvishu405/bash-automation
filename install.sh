@@ -1,0 +1,1 @@
+mkdir bin && cd bin && curl https://raw.githubusercontent.com/mvishu405/bash-automation/master/lemp.sh > lemp.sh && chmod u+x lemp.sh && ./lemp.sh
