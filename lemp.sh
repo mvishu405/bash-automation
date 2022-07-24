@@ -57,10 +57,10 @@ php -r "readfile('http://getcomposer.org/installer');" | sudo php -- --install-d
 #sudo rm -rf /etc/mysql /var/lib/mysql
 #sudo apt autoremove
 #sudo apt autoclean
-sudo apt update
-sudo apt-get install -y mysql-server
-sudo mysql_secure_installation
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_PASSWORD}';FLUSH PRIVILEGES;CREATE DATABASE ${MYSQL_DATABASE_NAME};"
+#sudo apt update
+#sudo apt-get install -y mysql-server
+#sudo mysql_secure_installation
+#mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_PASSWORD}';FLUSH PRIVILEGES;CREATE DATABASE ${MYSQL_DATABASE_NAME};"
 
 
 # Nginx Configuration
