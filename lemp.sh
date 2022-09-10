@@ -59,13 +59,18 @@ php -r "readfile('http://getcomposer.org/installer');" | sudo php -- --install-d
 #sudo apt autoclean
 sudo apt update
 sudo apt-get install -y mysql-server
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_PASSWORD}';FLUSH PRIVILEGES;CREATE DATABASE ${MYSQL_DATABASE_NAME};"
 sudo mysql_secure_installation
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_PASSWORD}';FLUSH PRIVILEGES;CREATE DATABASE ${MYSQL_DATABASE_NAME};"
+
+#For Demo purpose
+#mysql -u [username] -p [password] << EOF
+#[Mysql Command]
+#EOF
 
 # Nginx Configuration
 sudo mkdir -p "/var/www/$NGINX_DOCUMENT_ROOT"
 sudo chown -R $USER:www-data /var/www/$NGINX_DOCUMENT_ROOT
-sudo find /var/www/$NGINX_DOCUMENT_ROOT -type f -exec chmod 664 {} \;    
+sudo find /var/www/$NGINX_DOCUMENT_ROOT -type f -exec chmod 664 {} \;
 sudo find /var/www/$NGINX_DOCUMENT_ROOT -type d -exec chmod 775 {} \;
 
 
@@ -75,11 +80,11 @@ cat <<- EOF >> /etc/nginx/sites-available/default
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    
+
     root /var/www/$NGINX_DOCUMENT_ROOT/public;
 
     index index.html index.htm index.nginx-debian.html index.php;
-    
+
     #add_header Strict-Transport-Security 'max-age=31536000; includeSubDomains; preload';
     #add_header Content-Security-Policy "default-src 'self'; font-src *;img-src * data:; script-src *; style-src *";
     #add_header X-XSS-Protection "1; mode=block";
@@ -93,17 +98,17 @@ server {
     client_max_body_size 100M;
 
     charset utf-8;
-    
+
     location / {
         try_files \$uri \$uri/ /index.php?\$query_string;
     }
-    
+
     location = /favicon.ico { access_log off; log_not_found off; }
-    
+
     location = /robots.txt  { access_log off; log_not_found off; }
 
     error_page 404 /index.php;
-    
+
     location ~ \.php\$ {
         include snippets/fastcgi-php.conf;
         fastcgi_pass unix:/var/run/php/php$PHP_VERSION-fpm.sock;
@@ -112,7 +117,7 @@ server {
     location ~ /\.(?!well-known).* {
         deny all;
     }
-    
+
     location ~ /\.ht {
         deny all;
     }
