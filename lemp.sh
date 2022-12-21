@@ -33,7 +33,7 @@ EOF
 #Get repositories for the latest software
 sudo apt install software-properties-common
 sudo apt-get update
-#sudo add-apt-repository -y ppa:nginx/development
+sudo add-apt-repository -y ppa:nginx/development
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get update
 
