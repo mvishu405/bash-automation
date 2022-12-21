@@ -33,7 +33,7 @@ EOF
 #Get repositories for the latest software
 sudo apt install software-properties-common
 sudo apt-get update
-sudo add-apt-repository -y ppa:nginx/development
+#sudo add-apt-repository -y ppa:nginx/development
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get update
 
@@ -59,8 +59,9 @@ php -r "readfile('http://getcomposer.org/installer');" | sudo php -- --install-d
 #sudo apt autoclean
 sudo apt update
 sudo apt-get install -y mysql-server
-sudo mysql_secure_installation
 mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_PASSWORD}';FLUSH PRIVILEGES;CREATE DATABASE ${MYSQL_DATABASE_NAME};"
+sudo mysql_secure_installation
+
 
 #For Demo purpose
 #mysql -u [username] -p [password] << EOF
